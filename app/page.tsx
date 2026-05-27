@@ -236,7 +236,7 @@ export default function Home() {
                 lineHeight: 1.6,
               }}
             >
-              Panama, the owner of Devil Boys Barbershop has over a decade in haircutting experience. His specializations include: straigt razor, scissor work, mixed curl haircuts, long and short haricuts and hair coloring, specifically platinum blondes. He enjoys playing musical instruments and restoring old cars. Panama is always happy to help any client reach their heir goals.
+              Panama, the owner of Devil Boys Barbershop has over a decade of haircutting experience. His specializations include: straigt razor, scissor work, mixed curl haircuts, long and short haricuts and hair coloring, specifically platinum blondes. He enjoys playing musical instruments and restoring old cars. Panama is always happy to help any client reach their heir goals.
             </p>
             <a
               href="https://panamjbarbering8699.setmore.com/"
@@ -501,7 +501,7 @@ export default function Home() {
         instagram="@panamaelbarbero"
         instagramUrl="https://www.instagram.com/panamaelbarbero/"
         bookingUrl="https://panamjbarbering8699.setmore.com/"
-        description="Panama, the owner of Devil Boys Barbershop has over a decade in haircutting experience. His specializations include: straigt razor, scissor work, mixed curl haircuts, long and short haricuts and hair coloring, specifically platinum blondes. He enjoys playing musical instruments and restoring old cars. Panama is always happy to help any client reach their heir goals."
+        description="Panama, the owner of Devil Boys Barbershop has over a decade of haircutting experience. His specializations include: straigt razor, scissor work, mixed curl haircuts, long and short haricuts and hair coloring, specifically platinum blondes. He enjoys playing musical instruments and restoring old cars. Panama is always happy to help any client reach their heir goals."
         videoSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876617/panamaVideo_efykci.mp4"
         services={PANAMA_SERVICES}
       />
