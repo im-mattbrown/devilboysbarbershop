@@ -180,6 +180,7 @@ export default function Home() {
       >
         {/* Row 1 */}
         <div
+          className="barber-row"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -187,7 +188,7 @@ export default function Home() {
             width: "100%",
           }}
         >
-          <div style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111", position: "relative" }}>
+          <div className="barber-card-video" style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111", position: "relative" }}>
             <VideoScrubber
               src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778872391/panama_Follow_cuca33.mp4"
               hoverSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876617/panamaVideo_efykci.mp4"
@@ -196,6 +197,7 @@ export default function Home() {
 
           {/* Row 1, Card 2 — Panama Instagram */}
           <div
+            className="barber-card-ig"
             style={{ aspectRatio: "1 / 1", background: "#000", overflow: "hidden" }}
             dangerouslySetInnerHTML={{
               __html: '<behold-widget feed-id="ctYE5eWhcTuLRNJAXEcz" style="display:block;width:100%;height:100%"></behold-widget>',
@@ -204,6 +206,7 @@ export default function Home() {
 
           {/* Row 1, Card 3 — Panama */}
           <div
+            className="barber-card-bio"
             style={{
               aspectRatio: "1 / 1",
               background: "#111",
@@ -293,6 +296,7 @@ export default function Home() {
 
         {/* Row 2 */}
         <div
+          className="barber-row"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -302,6 +306,7 @@ export default function Home() {
         >
           {/* Row 2, Card 1 — Nando */}
           <div
+            className="barber-card-bio"
             style={{
               aspectRatio: "1 / 1",
               background: "#111",
@@ -389,11 +394,11 @@ export default function Home() {
           </div>
 
           {/* Row 2, Card 2 — Nando Instagram (second most recent post) */}
-          <div style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111" }}>
+          <div className="barber-card-ig" style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111" }}>
             <BeholdPost feedId="ctYE5eWhcTuLRNJAXEcz" index={1} />
           </div>
 
-          <div style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111", position: "relative" }}>
+          <div className="barber-card-video" style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111", position: "relative" }}>
             <VideoScrubber
               src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778872764/nando_follow_cwvbzv.mp4"
               startTime={2}
@@ -405,6 +410,7 @@ export default function Home() {
 
       {/* Location Section — 2/3 video + 1/3 map */}
       <section
+        className="location-section"
         style={{
           width: "100%",
           display: "flex",
@@ -414,7 +420,19 @@ export default function Home() {
           minHeight: "500px",
         }}
       >
-        <div style={{ flex: "2", overflow: "hidden", background: "#111" }}>
+        <div className="location-header">
+          <span className="location-header__title">Location</span>
+          <a
+            className="location-header__btn"
+            href="https://maps.google.com/?q=Devil+Boys+Barbershop,+1527+21st+Street,+Sacramento,+CA+95811"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get Directions
+          </a>
+        </div>
+
+        <div className="location-video" style={{ flex: "2", overflow: "hidden", background: "#111" }}>
           <video
             autoPlay
             muted
@@ -429,7 +447,7 @@ export default function Home() {
           </video>
         </div>
 
-        <div style={{ flex: "1", overflow: "hidden" }}>
+        <div className="location-map" style={{ flex: "1", overflow: "hidden" }}>
           <iframe
             title="Devil Boys Barbershop Location"
             width="100%"

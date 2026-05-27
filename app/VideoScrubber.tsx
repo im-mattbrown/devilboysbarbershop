@@ -13,9 +13,20 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
   const hoverVideoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [inCenter, setInCenter] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Scrub the base video based on cursor angle
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Desktop: scrub base video on mouse move
+  useEffect(() => {
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       const video = videoRef.current;
       const container = containerRef.current;
@@ -28,20 +39,19 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
       const dx = e.clientX - cx;
       const dy = e.clientY - cy;
 
-      // 0° = directly above, increases clockwise
       const angle = Math.atan2(dx, -dy);
       const angleDeg = ((angle * 180) / Math.PI + 360) % 360;
 
-      // Map 0–360° → startTime to startTime+8 seconds
       video.currentTime = startTime + (angleDeg / 360) * 8;
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [startTime]);
+  }, [isMobile, startTime]);
 
-  // Play/pause the hover video when inCenter changes
+  // Desktop: play/pause hover video when cursor enters center
   useEffect(() => {
+    if (isMobile) return;
     const hv = hoverVideoRef.current;
     if (!hv) return;
     if (inCenter) {
@@ -50,10 +60,31 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
     } else {
       hv.pause();
     }
-  }, [inCenter]);
+  }, [isMobile, inCenter]);
+
+  // Mobile: autoplay hoverSrc video when scrolled into view
+  useEffect(() => {
+    if (!isMobile || !hoverSrc) return;
+    const hv = hoverVideoRef.current;
+    const container = containerRef.current;
+    if (!hv || !container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          hv.play().catch(() => {});
+        } else {
+          hv.pause();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [isMobile, hoverSrc]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!hoverSrc) return;
+    if (isMobile || !hoverSrc) return;
     const container = containerRef.current;
     if (!container) return;
 
@@ -63,7 +94,7 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
 
     const inBox = Math.abs(e.clientX - cx) <= 25 && Math.abs(e.clientY - cy) <= 25;
     setInCenter(inBox);
-  }, [hoverSrc]);
+  }, [isMobile, hoverSrc]);
 
   const handleMouseLeave = useCallback(() => {
     setInCenter(false);
@@ -76,7 +107,7 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
       onMouseLeave={handleMouseLeave}
       style={{ position: "absolute", inset: 0 }}
     >
-      {/* Base scrub video */}
+      {/* Base scrub video — hidden on mobile */}
       <video
         ref={videoRef}
         muted
@@ -91,12 +122,13 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
           transform: "translate(-50%, -50%)",
           objectFit: "cover",
           display: "block",
+          opacity: isMobile ? 0 : 1,
         }}
       >
         <source src={src} type="video/mp4" />
       </video>
 
-      {/* Hover video — crossfades in over the scrub video */}
+      {/* Hover video — desktop: crossfades in on center hover; mobile: always visible, plays on scroll into view */}
       {hoverSrc && (
         <video
           ref={hoverVideoRef}
@@ -112,8 +144,8 @@ export function VideoScrubber({ src, startTime = 1, hoverSrc }: Props) {
             height: "106%",
             transform: "translate(-50%, -50%)",
             objectFit: "cover",
-            opacity: inCenter ? 1 : 0,
-            transition: "opacity 0.3s ease",
+            opacity: isMobile ? 1 : inCenter ? 1 : 0,
+            transition: isMobile ? "none" : "opacity 0.3s ease",
             pointerEvents: "none",
           }}
         >
