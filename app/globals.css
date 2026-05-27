@@ -57,6 +57,7 @@ body {
   display: none;
 }
 
+
 /* Location section — mobile stacking */
 @media (max-width: 768px) {
   .location-header {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Service {
   name: string;
@@ -14,13 +14,23 @@ interface Props {
   name: string;
   instagram: string;
   instagramUrl: string;
+  bookingUrl: string;
   description: string;
   videoSrc: string;
   services: Service[];
 }
 
-export function BarberModal({ isOpen, onClose, name, instagram, instagramUrl, description, videoSrc, services }: Props) {
+export function BarberModal({ isOpen, onClose, name, instagram, instagramUrl, bookingUrl, description, videoSrc, services }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -63,9 +73,9 @@ export function BarberModal({ isOpen, onClose, name, instagram, instagramUrl, de
           background: "#111",
           width: "100%",
           maxWidth: 720,
-          maxHeight: "90vh",
+          maxHeight: isMobile ? "100vh" : "90vh",
           overflowY: "auto",
-          padding: "40px",
+          padding: isMobile ? "24px 20px" : "40px",
         }}
       >
         {/* Close button */}
@@ -88,8 +98,8 @@ export function BarberModal({ isOpen, onClose, name, instagram, instagramUrl, de
         </button>
 
         {/* Top row — video + name */}
-        <div style={{ display: "flex", alignItems: "flex-start", gap: "32px", marginBottom: "48px" }}>
-          <div style={{ flexShrink: 0, width: 180, overflow: "hidden", background: "#000" }}>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "flex-start", gap: isMobile ? "24px" : "32px", marginBottom: isMobile ? "32px" : "48px" }}>
+          <div style={{ flexShrink: isMobile ? 0 : 0, width: isMobile ? "100%" : 180, overflow: "hidden", background: "#000" }}>
             <video
               ref={videoRef}
               muted
@@ -101,18 +111,46 @@ export function BarberModal({ isOpen, onClose, name, instagram, instagramUrl, de
             </video>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px", paddingTop: "8px" }}>
-            <h2
-              style={{
-                fontFamily: "var(--font-questrial), sans-serif",
-                fontSize: "clamp(2rem, 5vw, 4rem)",
-                fontWeight: 400,
-                color: "#fff",
-                lineHeight: 1,
-              }}
-            >
-              {name}
-            </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px", paddingTop: isMobile ? 0 : "8px", width: "100%" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap", width: "100%", justifyContent: isMobile ? "space-between" : "flex-start" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-questrial), sans-serif",
+                  fontSize: "clamp(2rem, 5vw, 4rem)",
+                  fontWeight: 400,
+                  color: "#fff",
+                  lineHeight: 1,
+                }}
+              >
+                {name}
+              </h2>
+              <a
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  fontFamily: "var(--font-questrial), sans-serif",
+                  fontSize: "0.875rem",
+                  letterSpacing: "0.1em",
+                  color: "#fff",
+                  border: "1px solid #fff",
+                  padding: "12px 28px",
+                  textDecoration: "none",
+                  transition: "background 0.2s, color 0.2s",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "#fff";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#000";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                  (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+                }}
+              >
+                Book Now
+              </a>
+            </div>
             <a
               href={instagramUrl}
               target="_blank"

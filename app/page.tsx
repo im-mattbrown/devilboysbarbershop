@@ -461,12 +461,46 @@ export default function Home() {
         </div>
       </section>
 
+      <footer
+        style={{
+          width: "100%",
+          background: "#000",
+          borderTop: "1px solid #222",
+          padding: "20px 28px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "16px",
+          flexWrap: "wrap",
+        }}
+      >
+        <span style={{ fontFamily: "var(--font-questrial), sans-serif", fontSize: "0.75rem", color: "#888", letterSpacing: "0.04em", display: "flex", alignItems: "center", gap: "8px" }}>
+          Website Designed and Built by Matt Brown from{" "}
+          <a href="https://monomstud.io" target="_blank" rel="noopener noreferrer" style={{ color: "#888", textDecoration: "underline" }}>
+            monom studio
+          </a>
+          <a href="mailto:m@monomstud.io" style={{ color: "#888", display: "inline-flex", alignItems: "center" }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <polyline points="2,4 12,13 22,4" />
+            </svg>
+          </a>
+        </span>
+        <span style={{ fontFamily: "var(--font-questrial), sans-serif", fontSize: "0.75rem", color: "#888", letterSpacing: "0.04em" }}>
+          Videography by{" "}
+          <a href="https://rocketboycreative.com" target="_blank" rel="noopener noreferrer" style={{ color: "#888", textDecoration: "underline" }}>
+            Milo Mendoza
+          </a>
+        </span>
+      </footer>
+
       <BarberModal
         isOpen={activeModal === "panama"}
         onClose={() => setActiveModal(null)}
         name="Panama"
         instagram="@panamaelbarbero"
         instagramUrl="https://www.instagram.com/panamaelbarbero/"
+        bookingUrl="https://panamjbarbering8699.setmore.com/"
         description="Panama, the owner of Devil Boys Barbershop has over a decade in haircutting experience. His specializations include: straigt razor, scissor work, mixed curl haircuts, long and short haricuts and hair coloring, specifically platinum blondes. He enjoys playing musical instruments and restoring old cars. Panama is always happy to help any client reach their heir goals."
         videoSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876617/panamaVideo_efykci.mp4"
         services={PANAMA_SERVICES}
@@ -477,6 +511,7 @@ export default function Home() {
         name="Nando"
         instagram="@nando_blendz"
         instagramUrl="https://www.instagram.com/nando_blendz/"
+        bookingUrl="https://booksy.com/en-us/1763695_nandoblendz_barber-shop_134653_sacramento#ba_s=seo"
         description=" Fernando, licensed professional barber has been cutting hair for 10 years. He specializes in curly hair, Edgar haircuts, sharp lines and crisp fades. Very detail oriented, passionate about his craft and friendly. He enjoys going to the gym and playing sports. Fernando is ready to service anyone that comes his way!"
         videoSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876606/nandoVideo_xem8op.mp4"
         services={NANDO_SERVICES}
