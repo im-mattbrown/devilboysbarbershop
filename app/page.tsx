@@ -61,7 +61,7 @@ function HeroSection() {
         }}
       >
         <source
-          src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778873755/DB_Hero_1_ud5wxg.mp4"
+          src="https://matte-cdn.b-cdn.net/DB_Hero.mp4"
           type="video/mp4"
         />
       </video>
@@ -190,8 +190,8 @@ export default function Home() {
         >
           <div className="barber-card-video" style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111", position: "relative" }}>
             <VideoScrubber
-              src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778872391/panama_Follow_cuca33.mp4"
-              hoverSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876617/panamaVideo_efykci.mp4"
+              src="https://matte-cdn.b-cdn.net/panama_Follow.mp4"
+              hoverSrc="https://matte-cdn.b-cdn.net/panamaVideo.mp4"
             />
           </div>
 
@@ -400,9 +400,9 @@ export default function Home() {
 
           <div className="barber-card-video" style={{ aspectRatio: "1 / 1", overflow: "hidden", background: "#111", position: "relative" }}>
             <VideoScrubber
-              src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778872764/nando_follow_cwvbzv.mp4"
+              src="https://matte-cdn.b-cdn.net/nando_follow.mp4"
               startTime={2}
-              hoverSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876606/nandoVideo_xem8op.mp4"
+              hoverSrc="https://matte-cdn.b-cdn.net/nandoVideo.mp4"
             />
           </div>
         </div>
@@ -441,7 +441,7 @@ export default function Home() {
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           >
             <source
-              src="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778872349/DB_Location_i5kqzo.mp4"
+              src="https://matte-cdn.b-cdn.net/DB_Location.mp4"
               type="video/mp4"
             />
           </video>
@@ -502,7 +502,7 @@ export default function Home() {
         instagramUrl="https://www.instagram.com/panamaelbarbero/"
         bookingUrl="https://panamjbarbering8699.setmore.com/"
         description="Panama, the owner of Devil Boys Barbershop has over a decade of haircutting experience. His specializations include: straigt razor, scissor work, mixed curl haircuts, long and short haricuts and hair coloring, specifically platinum blondes. He enjoys playing musical instruments and restoring old cars. Panama is always happy to help any client reach their heir goals."
-        videoSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876617/panamaVideo_efykci.mp4"
+        videoSrc="https://matte-cdn.b-cdn.net/panamaVideo.mp4"
         services={PANAMA_SERVICES}
       />
       <BarberModal
@@ -513,7 +513,7 @@ export default function Home() {
         instagramUrl="https://www.instagram.com/nando_blendz/"
         bookingUrl="https://booksy.com/en-us/1763695_nandoblendz_barber-shop_134653_sacramento#ba_s=seo"
         description=" Fernando, licensed professional barber has been cutting hair for 10 years. He specializes in curly hair, Edgar haircuts, sharp lines and crisp fades. Very detail oriented, passionate about his craft and friendly. He enjoys going to the gym and playing sports. Fernando is ready to service anyone that comes his way!"
-        videoSrc="https://res.cloudinary.com/dzghwkkzb/video/upload/v1778876606/nandoVideo_xem8op.mp4"
+        videoSrc="https://matte-cdn.b-cdn.net/nandoVideo.mp4"
         services={NANDO_SERVICES}
       />
     </main>
