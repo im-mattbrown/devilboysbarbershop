@@ -116,7 +116,7 @@ function HeroSection() {
             marginBottom: "16px",
           }}
         >
-          Sacramento&apos;s Best Barbershop
+          A Barbershop Built for the Customer
         </h1>
         <p
           style={{
@@ -127,7 +127,7 @@ function HeroSection() {
             letterSpacing: "0.08em",
           }}
         >
-          Our Words, Not Theirs
+          Quality. Respect. Hapiness
         </p>
       </div>
     </section>
